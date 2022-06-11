@@ -1,0 +1,11 @@
+[package]
+name = "kprobes-origin"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+common = {path = "common"}
+redbpf-macros = { git = "https://github.com/foniod/redbpf.git", branch = "main"}
+redbpf-probes = { git = "https://github.com/foniod/redbpf.git", branch = "main"}

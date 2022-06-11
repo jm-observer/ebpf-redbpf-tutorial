@@ -1,0 +1,28 @@
+[package]
+name = "myapp"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = {version = "1.5.0", features = ["signal", "rt"]}
+redbpf = { git = "https://github.com/foniod/redbpf.git", branch = "main" , features = ["load"]}
+common = {path = "common"}
+futures = "0.3"
+redbpf-macros = { git = "https://github.com/foniod/redbpf.git", branch = "main", optional = true}
+redbpf-probes = { git = "https://github.com/foniod/redbpf.git", branch = "main", optional = true}
+
+
+[workspace]
+members = ["common"]
+
+
+
+[features]
+default = []
+probes = ["redbpf-macros", "redbpf-probes"]
+
+[[bin]]
+name = "myapp-ebpf"
+required-features = ["probes"]

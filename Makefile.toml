@@ -1,0 +1,21 @@
+#[env]
+#CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = false
+[config]
+default_to_workspace = false
+
+[tasks.build-ebpf]
+command = "cargo"
+args = ["bpf", "build", "myapp-ebpf"]
+#workspace = false
+[tasks.debug]
+command = "cargo"
+args = ["build"]
+dependencies = ["build-ebpf"]
+#workspace = false
+
+[tasks.run]
+script = '''
+sudo ./target/debug/myapp
+'''
+dependencies = ["debug"]
+#workspace = false
